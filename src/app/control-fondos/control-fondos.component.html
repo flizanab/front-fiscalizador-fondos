@@ -1,1 +1,123 @@
-<p>control-fondos works!</p>
+<div>
+  <h2>Archivos</h2>
+  <ul>
+    <li *ngFor="let archivo of archivos">
+      <strong>ID:</strong> {{ archivo.id }}<br>
+      <strong>Rendición ID:</strong> {{ archivo.rendicionId }}<br>
+      <strong>Nombre Archivo:</strong> {{ archivo.nombreArchivo }}<br>
+      <strong>Tipo Archivo:</strong> {{ archivo.tipoArchivo }}<br>
+      <strong>URL Archivo:</strong> {{ archivo.urlArchivo }}<br>
+      <strong>Tamaño:</strong> {{ archivo.tamano }}<br>
+      <strong>Fecha Carga:</strong> {{ archivo.fechaCarga }}<br>
+      <strong>Base64:</strong> {{ archivo.base64 }}<br>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Instituciones</h2>
+  <ul>
+    <li *ngFor="let institucion of instituciones">
+      <strong>ID:</strong> {{ institucion.id }}<br>
+      <strong>Nombre:</strong> {{ institucion.nombre }}<br>
+      <strong>RUT:</strong> {{ institucion.rut }}<br>
+      <strong>Dirección:</strong> {{ institucion.direccion }}<br>
+      <strong>Activo:</strong> {{ institucion.artivo }}<br>
+      <strong>Fecha Creación:</strong> {{ institucion.fechaCreacion }}<br>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Permisos</h2>
+  <ul>
+    <li *ngFor="let permiso of permisos">
+      <strong>ID:</strong> {{ permiso.id }}<br>
+      <strong>Nombre:</strong> {{ permiso.nombre }}<br>
+      <strong>Descripción:</strong> {{ permiso.descripcion }}<br>
+      <strong>Fecha Creación:</strong> {{ permiso.fechaCreacion }}<br>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Permiso Roles</h2>
+  <ul>
+    <li *ngFor="let permisoRol of permisoRoles">
+      <strong>Rol ID:</strong> {{ permisoRol.rolId }}<br>
+      <strong>Permiso ID:</strong> {{ permisoRol.permisoId }}<br>
+      <strong>Fecha Asignación:</strong> {{ permisoRol.fechaAsignacion }}<br>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Proyectos</h2>
+  <ul>
+    <li *ngFor="let proyecto of proyectos">
+      <strong>ID:</strong> {{ proyecto.id }}<br>
+      <strong>Institución ID:</strong> {{ proyecto.institucionId }}<br>
+      <strong>Nombre:</strong> {{ proyecto.nombre }}<br>
+      <strong>Descripción:</strong> {{ proyecto.descripcion }}<br>
+      <strong>Fecha Inicio:</strong> {{ proyecto.fechaInicio }}<br>
+      <strong>Fecha Fin:</strong> {{ proyecto.fechaFin }}<br>
+      <strong>Presupuesto:</strong> {{ proyecto.presupuesto }}<br>
+      <strong>Estado:</strong> {{ proyecto.estado }}<br>
+      <strong>Fecha Creación:</strong> {{ proyecto.fechaCreacion }}<br>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Rendiciones</h2>
+  <ul>
+    <li *ngFor="let rendicion of rendiciones">
+      <strong>ID:</strong> {{ rendicion.id }}<br>
+      <strong>Proyecto ID:</strong> {{ rendicion.proyectoId }}<br>
+      <strong>Fecha Rendición:</strong> {{ rendicion.fechaRendicion }}<br>
+      <strong>Monto Total:</strong> {{ rendicion.montoTotal }}<br>
+      <strong>Estado:</strong> {{ rendicion.estado }}<br>
+      <strong>Observaciones:</strong> {{ rendicion.obserciones }}<br>
+      <strong>Fecha Creación:</strong> {{ rendicion.fechaCreacion }}<br>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Roles</h2>
+  <ul>
+    <li *ngFor="let rol of roles">
+      <strong>ID:</strong> {{ rol.id }}<br>
+      <strong>Nombre:</strong> {{ rol.nombre }}<br>
+      <strong>Descripción:</strong> {{ rol.descripcion }}<br>
+      <strong>Fecha Creación:</strong> {{ rol.fechaCreacion }}<br>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Usuarios</h2>
+  <ul>
+    <li *ngFor="let usuario of usuarios">
+      <strong>ID:</strong> {{ usuario.id }}<br>
+      <strong>Institución ID:</strong> {{ usuario.institucionId }}<br>
+      <strong>Nombre:</strong> {{ usuario.nombre }}<br>
+      <strong>Email:</strong> {{ usuario.email }}<br>
+      <strong>Activo:</strong> {{ usuario.activo }}<br>
+      <strong>Fecha Creación:</strong> {{ usuario.fechaCreacion }}<br>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Roles por Usuario</h2>
+  <ul>
+    <li *ngFor="let rolxUsuario of rolxUsuarios">
+      <strong>Usuario ID:</strong> {{ rolxUsuario.usuarioId }}<br>
+      <strong>Rol ID:</strong> {{ rolxUsuario.rolId }}<br>
+      <strong>Fecha Asignación:</strong> {{ rolxUsuario.fechaAsignacion }}<br>
+    </li>
+  </ul>
+</div>
+
+

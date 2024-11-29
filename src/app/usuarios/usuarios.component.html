@@ -1,1 +1,26 @@
-<p>usuarios works!</p>
+<div *ngIf="usuarios.length > 0; else noData">
+  <h2>Lista de Usuarios</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Activo</th>
+        <th>Fecha de Creación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.id }}</td>
+        <td>{{ usuario.nombre }}</td>
+        <td>{{ usuario.email }}</td>
+        <td>{{ usuario.activo ? 'Sí' : 'No' }}</td>
+        <td>{{ usuario.fechaCreacion | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noData>
+  <p>No hay usuarios disponibles.</p>
+</ng-template>

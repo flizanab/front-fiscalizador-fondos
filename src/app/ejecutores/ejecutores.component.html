@@ -1,0 +1,38 @@
+<div *ngIf="Institucion.length > 0; else noData">
+  <h2>Lista de Ejecutores</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>NOMBRE</th>
+        <th>RUT</th>
+        <th>Dirección</th>
+        <th>Fecha de creación</th>
+        <th>ESTADO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ejecutor of Institucion">
+        <td>{{ ejecutor.nombre }}</td>
+        <td>{{ ejecutor.rut }}</td>
+        <td>{{ ejecutor.direccion }}</td>
+        <td>{{ ejecutor.fechaCreacion | date: 'short' }}</td>
+        <td>
+          <span [class.text-success]="ejecutor.activo" [class.text-danger]="!ejecutor.activo">
+            {{ ejecutor.activo ? 'Activo' : 'Inactivo' }}
+          </span>
+        </td>
+        <td>
+          <button
+            class="btn btn-primary"
+            (click)="verUsuario(ejecutor.id)"
+          >
+            Ver Usuario
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noData>
+  <p>No hay ejecutores disponibles.</p>
+</ng-template>
