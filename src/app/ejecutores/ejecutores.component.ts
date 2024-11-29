@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Institucion } from '../models/institucion.model';
 import { UsuarioService } from '../servicios/api.service';
 import { Router } from '@angular/router';
@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
   templateUrl: './ejecutores.component.html',
   styleUrl: './ejecutores.component.css'
 })
-export class EjecutoresComponent {
+export class EjecutoresComponent implements OnInit {
 
-  Institucion: any[] = [];
+  Institucion: Institucion[] = [];
 
   constructor(
     private usuarioService: UsuarioService,
@@ -25,8 +25,8 @@ export class EjecutoresComponent {
       this.Institucion = data;
     });
   }
-  verUsuario(id: number): void {
-    this.router.navigate(['/usuario', id]);
+
+  verDetalle(id: number): void {
+    this.router.navigate(['/institucion', id]);
   }
 }
-

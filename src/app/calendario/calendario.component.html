@@ -1,0 +1,32 @@
+<div class="cal-container">
+  <h2>Calendario de Rendiciones</h2>
+  <div class="calendar-controls d-flex justify-content-center align-items-center">
+    <button class="btn btn-secondary me-2" (click)="cambiarAno(-1)">Año Anterior</button>
+    <button class="btn btn-secondary me-2" (click)="cambiarMes(-1)">Mes Anterior</button>
+    <span class="mx-3">{{ viewDate | date: 'MMMM yyyy' }}</span>
+    <button class="btn btn-secondary me-2" (click)="cambiarMes(1)">Mes Siguiente</button>
+    <button class="btn btn-secondary" (click)="cambiarAno(1)">Año Siguiente</button>
+  </div>
+  <div class="calendar">
+    <div class="calendar-header">
+      <div class="day-name">Dom</div>
+      <div class="day-name">Lun</div>
+      <div class="day-name">Mar</div>
+      <div class="day-name">Mié</div>
+      <div class="day-name">Jue</div>
+      <div class="day-name">Vie</div>
+      <div class="day-name">Sáb</div>
+    </div>
+    <div class="calendar-body">
+      <div *ngFor="let dia of getDiasDelMes(viewDate.getMonth(), viewDate.getFullYear())" class="day">
+        <div class="date">{{ dia.getDate() }}</div>
+        <div *ngFor="let evento of eventos">
+          <div *ngIf="isSameDay(evento.fecha, dia)" class="event">
+            <p>{{ evento.institucion }}</p>
+            <p>{{ evento.monto | currency }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

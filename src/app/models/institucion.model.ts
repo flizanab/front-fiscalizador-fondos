@@ -3,6 +3,6 @@ export interface Institucion {
  nombre: string | null;
  rut: string | null;
  direccion: string | null;
- artivo: boolean;
+ activo: boolean;
  fechaCreacion: string;
 }

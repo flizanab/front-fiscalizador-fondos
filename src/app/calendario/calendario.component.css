@@ -1,0 +1,41 @@
+.cal-container {
+  margin: 20px;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.calendar-header {
+  display: contents;
+}
+
+.day-name {
+  font-weight: bold;
+  text-align: center;
+}
+
+.calendar-body {
+  display: contents;
+}
+
+.day {
+  border: 1px solid #ddd;
+  padding: 10px;
+  min-height: 100px;
+  position: relative;
+}
+
+.date {
+  font-weight: bold;
+}
+
+.event {
+  background-color: #f0f8ff;
+  border: 1px solid #1e90ff;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 4px;
+}

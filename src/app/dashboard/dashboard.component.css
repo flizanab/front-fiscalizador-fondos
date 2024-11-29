@@ -1,0 +1,17 @@
+.card {
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  background-color: #36eb0e;
+}
+
+.list-group-item {
+  margin-bottom: 10px;
+}
+
+.list-group-item.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}

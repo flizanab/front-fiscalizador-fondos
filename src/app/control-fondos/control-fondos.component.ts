@@ -19,63 +19,58 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./control-fondos.component.css']
 })
 export class ControlFondosComponent implements OnInit {
-  archivos: Archivo[] = [];
   instituciones: Institucion[] = [];
-  permisos: Permisos[] = [];
-  permisoRoles: PermisoRol[] = [];
   proyectos: Proyecto[] = [];
   rendiciones: Rendicion[] = [];
-  roles: Rol[] = [];
-  usuarios: Usuario[] = [];
-  rolxUsuarios: RolxUsuario[] = [];
+  proyectosFiltrados: { [key: number]: Proyecto[] } = {};
+  rendicionesFiltradas: { [key: number]: Rendicion[] } = {};
 
   constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
-    this.obtenerArchivos();
     this.obtenerInstituciones();
-    this.obtenerPermisos();
-    this.obtenerPermisoRoles();
     this.obtenerProyectos();
     this.obtenerRendiciones();
-    this.obtenerRoles();
-    this.obtenerUsuarios();
-    this.obtenerRolxUsuarios();
-  }
-
-  obtenerArchivos(): void {
-    this.usuarioService.obtenerArchivos().subscribe(data => this.archivos = data);
   }
 
   obtenerInstituciones(): void {
-    this.usuarioService.obtenerInstitucion().subscribe(data => this.instituciones = data);
-  }
-
-  obtenerPermisos(): void {
-    this.usuarioService.obtenerPermisos().subscribe(data => this.permisos = data);
-  }
-
-  obtenerPermisoRoles(): void {
-    this.usuarioService.obtenerPermisoRol().subscribe(data => this.permisoRoles = data);
+    this.usuarioService.obtenerInstitucion().subscribe(data => {
+      this.instituciones = data;
+      this.filtrarProyectos();
+    });
   }
 
   obtenerProyectos(): void {
-    this.usuarioService.obtenerProyecto().subscribe(data => this.proyectos = data);
+    this.usuarioService.obtenerProyecto().subscribe(data => {
+      this.proyectos = data;
+      this.filtrarProyectos();
+    });
   }
 
   obtenerRendiciones(): void {
-    this.usuarioService.obtenerRendicion().subscribe(data => this.rendiciones = data);
+    this.usuarioService.obtenerRendicion().subscribe(data => {
+      this.rendiciones = data;
+      this.filtrarRendiciones();
+    });
   }
 
-  obtenerRoles(): void {
-    this.usuarioService.obtenerRoles().subscribe(data => this.roles = data);
+  filtrarProyectos(): void {
+    if (this.instituciones.length && this.proyectos.length) {
+      this.instituciones.forEach(institucion => {
+        this.proyectosFiltrados[institucion.id] = this.proyectos.filter(proyecto => proyecto.institucionId === institucion.id);
+      });
+    }
   }
 
-  obtenerUsuarios(): void {
-    this.usuarioService.obtenerUsuarios().subscribe(data => this.usuarios = data);
+  filtrarRendiciones(): void {
+    if (this.proyectos.length && this.rendiciones.length) {
+      this.proyectos.forEach(proyecto => {
+        this.rendicionesFiltradas[proyecto.id] = this.rendiciones.filter(rendicion => rendicion.proyectoId === proyecto.id);
+      });
+    }
   }
 
-  obtenerRolxUsuarios(): void {
-    this.usuarioService.obtenerRolxUsuario().subscribe(data => this.rolxUsuarios = data);
+  obtenerRendicionesPorProyecto(proyectoId: number): number {
+    return this.rendicionesFiltradas[proyectoId]?.reduce((total, rendicion) => total + rendicion.montoTotal, 0) || 0;
   }
 }

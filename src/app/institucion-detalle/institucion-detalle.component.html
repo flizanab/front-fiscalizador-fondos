@@ -1,0 +1,87 @@
+<div *ngIf="institucion">
+  <h2>Institución: {{ institucion.nombre }}</h2>
+  <p><strong>RUT:</strong> {{ institucion.rut }}</p>
+  <p><strong>Dirección:</strong> {{ institucion.direccion }}</p>
+  <p><strong>Fecha de Creación:</strong> {{ institucion.fechaCreacion | date }}</p>
+  <p><strong>Activo:</strong> {{ institucion.activo ? 'Sí' : 'No' }}</p>
+
+  <div *ngIf="proyectos && proyectos.length > 0">
+    <h3>Proyectos y Rendiciones</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre del Proyecto</th>
+          <th>Descripción</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          <th>Presupuesto</th>
+          <th>Estado</th>
+          <th>Fecha Rendición</th>
+          <th>Monto Total</th>
+          <th>Estado Rendición</th>
+          <th>Observaciones</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectos">
+          <td>{{ proyecto.nombre }}</td>
+          <td>{{ proyecto.descripcion }}</td>
+          <td>{{ proyecto.fechaInicio | date }}</td>
+          <td>{{ proyecto.fechaFin | date }}</td>
+          <td>{{ proyecto.presupuesto | currency }}</td>
+          <td>{{ proyecto.estado }}</td>
+          <td *ngIf="rendicionesFiltradas[proyecto.id] && rendicionesFiltradas[proyecto.id].length > 0" [attr.rowspan]="rendicionesFiltradas[proyecto.id].length">
+            <ng-container *ngFor="let rendicion of rendicionesFiltradas[proyecto.id]; let i = index">
+              <ng-container *ngIf="i === 0">
+                {{ rendicion.fechaRendicion | date }}
+              </ng-container>
+            </ng-container>
+          </td>
+          <td *ngIf="rendicionesFiltradas[proyecto.id] && rendicionesFiltradas[proyecto.id].length > 0" [attr.rowspan]="rendicionesFiltradas[proyecto.id].length">
+            <ng-container *ngFor="let rendicion of rendicionesFiltradas[proyecto.id]; let i = index">
+              <ng-container *ngIf="i === 0">
+                {{ rendicion.montoTotal | currency }}
+              </ng-container>
+            </ng-container>
+          </td>
+          <td *ngIf="rendicionesFiltradas[proyecto.id] && rendicionesFiltradas[proyecto.id].length > 0" [attr.rowspan]="rendicionesFiltradas[proyecto.id].length">
+            <ng-container *ngFor="let rendicion of rendicionesFiltradas[proyecto.id]; let i = index">
+              <ng-container *ngIf="i === 0">
+                {{ rendicion.estado }}
+              </ng-container>
+            </ng-container>
+          </td>
+          <td *ngIf="rendicionesFiltradas[proyecto.id] && rendicionesFiltradas[proyecto.id].length > 0" [attr.rowspan]="rendicionesFiltradas[proyecto.id].length">
+            <ng-container *ngFor="let rendicion of rendicionesFiltradas[proyecto.id]; let i = index">
+              <ng-container *ngIf="i === 0">
+                {{ rendicion.obserciones }}
+              </ng-container>
+            </ng-container>
+          </td>
+          <td *ngIf="rendicionesFiltradas[proyecto.id] && rendicionesFiltradas[proyecto.id].length > 0" [attr.rowspan]="rendicionesFiltradas[proyecto.id].length">
+            <button class="btn btn-primary" [routerLink]="['/usuario', institucion.id]">Ver Usuarios</button>
+          </td>
+        </tr>
+        <tr *ngFor="let proyecto of proyectos">
+          <ng-container *ngFor="let rendicion of rendicionesFiltradas[proyecto.id]; let i = index">
+            <ng-container *ngIf="i > 0">
+              <td colspan="6"></td>
+              <td>{{ rendicion.fechaRendicion | date }}</td>
+              <td>{{ rendicion.montoTotal | currency }}</td>
+              <td>{{ rendicion.estado }}</td>
+              <td>{{ rendicion.obserciones }}</td>
+              <td>
+                <button class="btn btn-primary" [routerLink]="['/usuario', institucion.id]">Ver Usuarios</button>
+              </td>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="!institucion">
+  <p>No se encontró la institución.</p>
+</div>
