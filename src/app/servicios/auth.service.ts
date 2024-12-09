@@ -10,7 +10,7 @@ export class AuthService {
 
   // Método para realizar login
   login(email: string, password: string): boolean {
-    if (email === '123' && password === '123') {
+    if (email === 'mail@mail.com' && password === '123456') {
       localStorage.setItem(this.AUTH_KEY, 'true');
       return true;
     }
