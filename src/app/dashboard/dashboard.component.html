@@ -4,7 +4,7 @@
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Total Presupuesto</h5>
-          <p class="card-text">{{ totalPresupuesto | currency }}</p>
+          <p class="card-text">$ 63,000,000.00</p>
         </div>
       </div>
     </div>
@@ -12,7 +12,7 @@
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Total Rendiciones</h5>
-          <p class="card-text">{{ totalRendiciones | currency }}</p>
+          <p class="card-text">$ 6,000,000.00</p>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
       <div class="card text-center">
         <div class="card-body">
           <h5 class="card-title">Total Instituciones</h5>
-          <p class="card-text">{{ totalInstituciones }}</p>
+          <p class="card-text"> 5 </p>
         </div>
       </div>
     </div>
@@ -42,25 +42,80 @@
       <h5>Lista de Instituciones</h5>
       <ul class="list-group">
         <li class="list-group-item active">
-          <div class="row">
-            <div class="col-md-3"><strong>Nombre</strong></div>
-            <div class="col-md-3"><strong>Porcentaje Rendiciones</strong></div>
-            <div class="col-md-3"><strong>Monto Rendiciones</strong></div>
-            <div class="col-md-3"><strong>Monto Presupuesto</strong></div>
+          <div class="row text-center">
+            <div class="col-6 col-md-2"><strong>Nombre</strong></div>
+            <div class="col-6 col-md-2"><strong>Porcentaje Rendiciones</strong></div>
+            <div class="col-6 col-md-2"><strong>Monto Rendiciones</strong></div>
+            <div class="col-6 col-md-2"><strong>Monto Presupuesto</strong></div>
+            <div class="col-6 col-md-2"><strong>Alertas</strong></div>
           </div>
         </li>
         <li class="list-group-item" *ngFor="let institucion of instituciones">
-          <div class="row">
-            <div class="col-md-3">{{ institucion.nombre }}</div>
-            <div class="col-md-3">
+          <div class="row text-center">
+            <div class="col-6 col-md-2">{{ institucion.nombre }}</div>
+            <div class="col-6 col-md-2">
               <div class="progress" style="height: 20px;">
                 <div class="progress-bar" role="progressbar" [style.width.%]="calcularPorcentajeRendicionesInstitucion(institucion.id)" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                   {{ calcularPorcentajeRendicionesInstitucion(institucion.id) | number: '1.0-2' }}%
                 </div>
               </div>
             </div>
-            <div class="col-md-3">{{ calcularMontoRendicionesInstitucion(institucion.id) | currency }}</div>
-            <div class="col-md-3">{{ calcularMontoPresupuestoInstitucion(institucion.id) | currency }}</div>
+            <div class="col-6 col-md-2">{{ calcularMontoRendicionesInstitucion(institucion.id) | currency }}</div>
+            <div class="col-6 col-md-2">{{ calcularMontoPresupuestoInstitucion(institucion.id) | currency }}</div>
+            <div class="col-6 col-md-2">
+              <!-- Añadir icono de alerta si es necesario -->
+              <i *ngIf="institucion.nombre === 'Fundación Ayuda Escolar' || institucion.nombre === 'Asociación Cultural'" class="bi bi-exclamation-triangle-fill text-danger"></i>
+            </div>
+          </div>
+        </li>
+        <!-- Nuevas instituciones añadidas -->
+        <li class="list-group-item">
+          <div class="row text-center">
+            <div class="col-6 col-md-2">Fundación Ayuda Escolar</div>
+            <div class="col-6 col-md-2">
+              <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" [style.width.%]="calcularPorcentajeRendicionesInstitucion(3)" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
+                  10%
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-2">$1,500,000.00</div>
+            <div class="col-6 col-md-2">$15,000,000.00</div>
+            <div class="col-6 col-md-2">
+              <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row text-center">
+            <div class="col-6 col-md-2">Asociación Cultural</div>
+            <div class="col-6 col-md-2">
+              <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" [style.width.%]="calcularPorcentajeRendicionesInstitucion(4)" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                  10%
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-2">$2,000,000.00</div>
+            <div class="col-6 col-md-2">$20,000,000.00</div>
+            <div class="col-6 col-md-2">
+              <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row text-center">
+            <div class="col-6 col-md-2">Centro de Salud Comunitario</div>
+            <div class="col-6 col-md-2">
+              <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" [style.width.%]="calcularPorcentajeRendicionesInstitucion(5)" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                  10%
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-2">$1,000,000.00</div>
+            <div class="col-6 col-md-2">$10,000,000.00</div>
+            <div class="col-6 col-md-2"></div>
           </div>
         </li>
       </ul>

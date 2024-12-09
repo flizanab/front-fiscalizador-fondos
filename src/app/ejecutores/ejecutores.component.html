@@ -8,6 +8,8 @@
         <th>Dirección</th>
         <th>Fecha de creación</th>
         <th>ESTADO</th>
+        <th>Alertas</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -22,10 +24,60 @@
           </span>
         </td>
         <td>
-          <button
-            class="btn btn-primary"
-            (click)="verDetalle(ejecutor.id)"
-          >
+          <i *ngIf="ejecutor.nombre === 'Fundación Ayuda Escolar' || ejecutor.nombre === 'Asociación Cultural'" class="bi bi-exclamation-triangle-fill text-danger"></i>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="verDetalle(ejecutor.id)">
+            Ver Detalle
+          </button>
+        </td>
+      </tr>
+      <!-- Nuevas fundaciones añadidas -->
+      <tr>
+        <td>Fundación Ayuda Escolar</td>
+        <td>12.345.678-9</td>
+        <td>Calle Falsa 123, Santiago</td>
+        <td>{{ '2023-01-15T00:00:00' | date: 'short' }}</td>
+        <td>
+          <span class="text-success">Activo</span>
+        </td>
+        <td>
+          <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="verDetalle(3)">
+            Ver Detalle
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>Asociación Cultural</td>
+        <td>98.765.432-1</td>
+        <td>Avenida Siempre Viva 742, Valparaíso</td>
+        <td>{{ '2022-05-20T00:00:00' | date: 'short' }}</td>
+        <td>
+          <span class="text-danger">Inactivo</span>
+        </td>
+        <td>
+          <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+        </td>
+        <td>
+          <button class="btn btn-primary" (click)="verDetalle(4)">
+            Ver Detalle
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>Centro de Salud Comunitario</td>
+        <td>11.223.344-5</td>
+        <td>Pasaje Los Olivos 456, Concepción</td>
+        <td>{{ '2021-11-30T00:00:00' | date: 'short' }}</td>
+        <td>
+          <span class="text-success">Activo</span>
+        </td>
+        <td></td>
+        <td>
+          <button class="btn btn-primary" (click)="verDetalle(5)">
             Ver Detalle
           </button>
         </td>
